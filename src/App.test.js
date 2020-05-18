@@ -4,6 +4,8 @@ import { fetchShow as mockFetchShow } from "./api/fetchShow";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 
+jest.mock("./api/fetchShow");
+
 const showData = {
   id: 2993,
   name: "Stranger Things",
@@ -61,7 +63,9 @@ const showData = {
   },
 };
 
-jest.mock("./api/fetchShow");
+// test("renders without errors", () => {
+//   render(<App />);
+// });
 
 test("renders dropdown and data from API", async () => {
   mockFetchShow.mockResolvedValueOnce(showData);

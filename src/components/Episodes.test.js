@@ -18,13 +18,19 @@ const season = [
   },
 ];
 
+test("renders Episodes without errors", () => {
+  render(<Episodes episodes={[]} />);
+});
+
 test("renders dog images from API", () => {
-  const { queryAllByTestId, rerender } = render(<Episodes episodes={[]} />);
+  const { queryAllByTestId, rerender } = render(
+    <Episodes episodes={[]} error="" />
+  );
 
   expect(queryAllByTestId(/episode-card/i)).toHaveLength(0);
 
   // We will rerender the component with our dummy data passed in as the new props
-  rerender(<Episodes episodes={season} />);
+  rerender(<Episodes episodes={season} error="" />);
 
   // Assert that we now have epside cards rendering!
   expect(queryAllByTestId(/episode-card/i)).toHaveLength(1);
